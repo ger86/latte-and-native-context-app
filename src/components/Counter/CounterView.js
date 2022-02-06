@@ -3,10 +3,10 @@ import {Button} from 'react-native';
 import BorderedView from '#components/ui/BorderedView';
 import Text from '#components/ui/Text';
 
-export default function CounterView({counter, onClickButton, mode}) {
+export default function CounterView({counter, onClickButton}) {
   return (
-    <BorderedView mode={mode}>
-      <Text mode={mode}>{counter}</Text>
+    <BorderedView>
+      <Text>{counter}</Text>
       <Button onPress={onClickButton} title="Incrementar" />
     </BorderedView>
   );

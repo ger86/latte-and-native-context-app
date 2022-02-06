@@ -2,6 +2,8 @@ import React from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
 import Counter from '#components/Counter';
 import ToggleMode from '#components/ToggleMode';
+import {ModeContextProvider} from '#contexts/ModeContext';
+import {useModeContext} from '#/contexts/ModeContext';
 
 const styles = StyleSheet.create({
   safeAreaView: {
@@ -18,14 +20,23 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function AppView({mode, toggleMode}) {
+export default function AppView() {
+  return (
+    <ModeContextProvider>
+      <Content />
+    </ModeContextProvider>
+  );
+}
+
+function Content() {
+  const {mode} = useModeContext();
   const containerModeStyle =
     mode === 'light' ? styles.containerLight : styles.containerDark;
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <View style={[styles.container, containerModeStyle]}>
-        <ToggleMode mode={mode} toggleMode={toggleMode} />
-        <Counter mode={mode} />
+        <ToggleMode />
+        <Counter />
       </View>
     </SafeAreaView>
   );

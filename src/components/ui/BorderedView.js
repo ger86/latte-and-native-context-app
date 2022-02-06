@@ -1,4 +1,5 @@
 import React from 'react';
+import {useModeContext} from '#/contexts/ModeContext';
 import {StyleSheet, View} from 'react-native';
 
 const styles = StyleSheet.create({
@@ -14,7 +15,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function BorderedView({mode, children}) {
+export default function BorderedView({children}) {
+  const {mode} = useModeContext();
   return (
     <View style={mode === 'light' ? styles.light : styles.dark}>
       {children}
